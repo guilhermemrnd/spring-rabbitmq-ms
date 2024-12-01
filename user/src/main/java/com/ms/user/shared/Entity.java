@@ -1,5 +1,6 @@
 package com.ms.user.shared;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Entity<T> {
@@ -7,7 +8,7 @@ public abstract class Entity<T> {
   protected final T props;
 
   public Entity(T props, UUID id) {
-    this._id = id;
+    this._id = Objects.requireNonNullElse(id, UUID.randomUUID());
     this.props = props;
   }
 

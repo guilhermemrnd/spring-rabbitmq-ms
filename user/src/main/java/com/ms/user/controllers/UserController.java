@@ -25,20 +25,20 @@ public class UserController {
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("")
   public void saveUser(@RequestBody @Valid SaveUserDto userDto) {
-    try {
+    // try {
       saveUserUseCase.execute(userDto);
-    } catch (SaveUserErrors.UserAlreadyExists e) {
-      // return ResponseEntity.status(HttpStatus.CONFLICT).body(
-      //     new ExceptionDto(
-      //         HttpStatus.CONFLICT.value(),
-      //         e.getMessage(),
-      //         "/users"));
-    } catch (Exception e) {
-      // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-      //     new ExceptionDto(
-      //         HttpStatus.INTERNAL_SERVER_ERROR.value(),
-      //         e.getMessage(),
-      //         "/users"));
-    }
+    // } catch (SaveUserErrors.UserAlreadyExists e) {
+    //   return ResponseEntity.status(HttpStatus.CONFLICT).body(
+    //       new ExceptionDto(
+    //           HttpStatus.CONFLICT.value(),
+    //           e.getMessage(),
+    //           "/users"));
+    // } catch (Exception e) {
+    //   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+    //       new ExceptionDto(
+    //           HttpStatus.INTERNAL_SERVER_ERROR.value(),
+    //           e.getMessage(),
+    //           "/users"));
+    // }
   }
 }

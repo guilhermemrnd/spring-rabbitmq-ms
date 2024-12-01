@@ -3,8 +3,11 @@ package com.ms.user.infra;
 import java.io.Serializable;
 import java.util.UUID;
 
+import com.ms.user.shared.DomainEvents;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PostPersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,4 +27,9 @@ public class UserEntity implements Serializable {
   private UUID userId;
   private String name;
   private String email;
+
+  @PostPersist
+  private void afterSave() {
+    DomainEvents.dispatchAggregateEvents(userId);
+  }
 }

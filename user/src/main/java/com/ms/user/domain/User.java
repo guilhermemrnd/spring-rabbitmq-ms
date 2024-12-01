@@ -3,12 +3,13 @@ package com.ms.user.domain;
 import java.util.List;
 import java.util.UUID;
 
-import com.ms.user.shared.Entity;
+import com.ms.user.domain.events.UserCreatedEvent;
+import com.ms.user.shared.AggregateRoot;
 import com.ms.user.shared.Guard;
 import com.ms.user.shared.GuardArg;
 import com.ms.user.shared.Result;
 
-public class User extends Entity<UserProps> {
+public class User extends AggregateRoot<UserProps> {
   private User(UserProps props, UUID id) {
     super(props, id);
   }
@@ -26,11 +27,14 @@ public class User extends Entity<UserProps> {
       return Result.fail(guardResult.getError());
     }
 
-    if (id == null) {
-      return Result.ok(new User(props));
+    var user = new User(props, id);
+
+    boolean wasIdProvided = id != null;
+    if (!wasIdProvided) {
+      user.raiseEvent(new UserCreatedEvent(user));
     }
 
-    return Result.ok(new User(props, id));
+    return Result.ok(user);
   }
 
   /* ---- Getters and Setters ---- */
