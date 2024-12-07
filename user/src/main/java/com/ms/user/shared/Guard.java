@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Guard {
   public static Result<String> againstNull(Object argValue, String argumentName) {
-    if (argValue == null) {
+    if (argValue == null || argValue.toString().isBlank()) {
       return Result.fail(argumentName + " should not be null");
     }
     return Result.ok();

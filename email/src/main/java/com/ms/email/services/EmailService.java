@@ -3,9 +3,11 @@ package com.ms.email.services;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
 import com.ms.email.domain.Email;
 
+@Service
 public class EmailService implements IEmailService {
   public final JavaMailSender emailSender;
 

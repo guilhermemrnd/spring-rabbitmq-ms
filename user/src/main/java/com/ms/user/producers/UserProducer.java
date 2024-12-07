@@ -11,8 +11,8 @@ import com.ms.user.dtos.EmailDto;
 public class UserProducer {
   final RabbitTemplate rabbitTemplate;
 
-  public UserProducer(RabbitTemplate rabbitTempalte) {
-    this.rabbitTemplate = rabbitTempalte;
+  public UserProducer(RabbitTemplate rabbitTemplate) {
+    this.rabbitTemplate = rabbitTemplate;
   }
 
   @Value(value = "${broker.queue.email.name}")

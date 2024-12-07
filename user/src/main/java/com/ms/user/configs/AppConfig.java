@@ -1,7 +1,6 @@
 package com.ms.user.configs;
 
 import com.ms.user.email.AfterUserCreated;
-import com.ms.user.infra.IUserRepository;
 import com.ms.user.infra.JpaUserRepository;
 import com.ms.user.infra.UserRepository;
 import com.ms.user.producers.UserProducer;
@@ -21,17 +20,17 @@ public class AppConfig {
   }
 
   @Bean
-  public IUserRepository userRepository() {
+  UserRepository userRepository() {
     return new UserRepository(jpaUserRepository);
   }
 
   @Bean
-  public SaveUserUseCase saveUserUseCase() {
+  SaveUserUseCase saveUserUseCase() {
     return new SaveUserUseCase(userRepository());
   }
 
   @Bean
-  public AfterUserCreated afterUserCreated() {
+  AfterUserCreated afterUserCreated() {
     return new AfterUserCreated(userProducer);
   }
 }

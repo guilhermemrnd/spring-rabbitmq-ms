@@ -1,9 +1,12 @@
 package com.ms.user.infra;
 
+import org.springframework.stereotype.Service;
+
 import com.ms.user.domain.User;
 
 import jakarta.transaction.Transactional;
 
+@Service
 public class UserRepository implements IUserRepository {
   private final JpaUserRepository jpaUserRepo;
 

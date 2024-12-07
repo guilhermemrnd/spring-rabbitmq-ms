@@ -1,9 +1,12 @@
 package com.ms.email.infra;
 
+import org.springframework.stereotype.Service;
+
 import com.ms.email.domain.Email;
 
 import jakarta.transaction.Transactional;
 
+@Service
 public class EmailRepository implements IEmailRepository {
   private final JpaEmailRepository jpaEmailRepository;
 
