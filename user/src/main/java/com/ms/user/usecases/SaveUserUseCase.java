@@ -18,7 +18,7 @@ public class SaveUserUseCase {
   public void execute(SaveUserDto props) {
     boolean doesUserExist = userRepo.exists(props.email());
     if (doesUserExist) {
-      throw new SaveUserErrors.UserAlreadyExists(props.email());
+      throw new SaveUserErrors.UserAlreadyExists();
     }
 
     var userOrError = User.create(new UserProps(
